@@ -1,0 +1,85 @@
+<script setup>
+import { ref } from 'vue'
+
+let msg = "Hello world";
+let rawHtml = "<li>Daftar 1</li>";
+let number = 1;
+let ok = "NO";
+let seen = true; // 1 atau 0
+
+// Split Reverse Message
+
+let message = ref("Hai Vue JS"); 
+function balikkanPesan() {
+  message.value = message.value.split('').reverse().join('');
+}
+
+// pengulangan
+let todos = [
+  { teks: 'Belajar JavaScript' },
+  { teks: 'Belajar Vue' },
+  { teks: 'Buat proyek keren' }
+]
+
+// Input
+let pesan = ref("Hai Vue");
+
+// coba
+let data = [
+    { nama: 'sarah', kelas: 'XXI', jurusan: 'RPL'},
+    { nama: 'cici', kelas: 'XXI', jurusan: 'RPL'},
+    { nama: 'intan', kelas: 'XXI', jurusan: 'RPL'},
+    { nama: 'dina', kelas: 'XXI', jurusan: 'RPL'},
+    { nama: 'risna', kelas: 'XXI', jurusan: 'RPL'},
+];
+console.log(data)
+
+</script>
+
+<template>
+   <div id="app">
+       <span>{{ msg }}</span> <br>       
+       <span style="color:brown" v-html="rawHtml"></span> <br>
+       <span v-html="rawHtml"></span><br>
+       <button :disabled="isButtonDisabled">Button</button> <br>
+        {{ number + 1 }} <br>
+        {{ ok ? 'YES' : 'NO' }} <br>
+        {{ msg.split('').reverse().join('') }}
+
+        <!-- Direktif --> 
+        <p v-if="seen">Sekarang Anda bisa melihatku</p> 
+
+        <!-- Split Button -->
+        <p>{{ message }}</p>
+        <button v-on:click="balikkanPesan">Balikkan Pesan</button>
+
+        <!-- For -->
+        <br> Pengulangan <br>
+        <ol>
+          <li v-for="todo in todos">
+           {{ todo.teks }}
+          </li>
+         </ol>
+         
+        <!-- Input -->
+        <p>{{ pesan }}</p> 
+        <input v-model="pesan"> <br>
+
+        <table border="1">
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>kelas</th>
+            <th>jurusan</th>
+        </tr>
+        <tr v-for= "siswa in data">
+            <td>{{ number++ }}</td>
+            <td>{{ siswa.nama}}</td>
+            <td>{{ siswa.kelas }}</td>
+            <td>{{ siswa.jurusan }}</td>
+       
+        </tr>
+    </table>
+    </div>
+       
+</template>
